@@ -1,5 +1,5 @@
 # Django settings for treasurehunt project.
-
+import os
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
@@ -13,8 +13,8 @@ MANAGERS = ADMINS
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': '',                      # Or path to database file if using sqlite3.
+        'ENGINE': 'django.db.backends.sqlite3', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
+        'NAME': 'db.sqlite3',                      # Or path to database file if using sqlite3.
         # The following settings are not used with sqlite3:
         'USER': '',
         'PASSWORD': '',
@@ -52,12 +52,12 @@ USE_TZ = True
 
 # Absolute filesystem path to the directory that will hold user-uploaded files.
 # Example: "/var/www/example.com/media/"
-MEDIA_ROOT = ''
+MEDIA_ROOT = ROOT_DIR+'/media/'
 
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash.
 # Examples: "http://example.com/media/", "http://media.example.com/"
-MEDIA_URL = ''
+MEDIA_URL = '/media/'
 
 # Absolute path to the directory static files should be collected to.
 # Don't put anything in this directory yourself; store your static files
@@ -117,7 +117,17 @@ TEMPLATE_DIRS = (
     # Don't forget to use absolute paths, not relative paths.
     ROOT_DIR+"/templates/",
 )
-
+TEMPLATE_CONTEXT_PROCESSORS = (
+    'django.contrib.auth.context_processors.auth',
+    'django.core.context_processors.debug',
+    'django.core.context_processors.i18n',
+    'django.core.context_processors.media',
+    'django.core.context_processors.static',
+    'django.core.context_processors.tz',
+    'django.core.context_processors.request',
+    'django.contrib.messages.context_processors.messages',
+    'django_facebook.context_processors.facebook',
+    )
 INSTALLED_APPS = (
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -129,6 +139,9 @@ INSTALLED_APPS = (
      'django.contrib.admin',
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
+    'login',
+    'django_facebook',
+    'problems',
 )
 
 SESSION_SERIALIZER = 'django.contrib.sessions.serializers.JSONSerializer'
@@ -161,3 +174,15 @@ LOGGING = {
         },
     }
 }
+AUTHENTICATION_BACKENDS = (
+    'django_facebook.auth_backends.FacebookBackend',
+    'django.contrib.auth.backends.ModelBackend',
+)
+
+FACEBOOK_APP_ID = '210023619181880'
+FACEBOOK_APP_SECRET = '93efd45d291fd1f56bba25139b42a156'
+FACEBOOK_DEFAULT_SCOPE = ['publish_stream','publish_actions','email']
+AUTH_USER_MODEL = 'django_facebook.FacebookCustomUser'
+FACEBOOK_STORE_FRIENDS = True
+# FACEBOOK_CELERY_TOKEN_EXTEND = True
+AUTH_PROFILE_MODULE = 'django_facebook.FacebookProfile'
