@@ -6,6 +6,7 @@ admin.autodiscover()
 from django.conf import settings
 from django.conf.urls.static import static
 from login.views import *
+from problems.views import *
 urlpatterns = patterns('',
     # Examples:
     # url(r'^$', 'treasurehunt.views.home', name='home'),
@@ -21,5 +22,6 @@ urlpatterns = patterns('',
 	url(r'^accounts/', include('django_facebook.auth_urls')),
 	url(r'^treasure/$',register_next),
     url(r'^next/$',next),
+    url(r'^view/$',view_prob)
  #Don't add this line if you use django registration or userena for registration and auth.
 )+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

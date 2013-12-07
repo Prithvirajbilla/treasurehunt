@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+{% include "header.html" %}
+
+<body>
+{% include 'nav.html' %}
+
+<div class="container">
+	<div class="row">
+		<div class="col-lg-8 col-lg-offset-2">
+			<br/>
+			{% if error %}
+			<div class="alert alert-danger fade in">
+		        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+		        <strong>Holy guacamole!</strong> Best check yo self, you're not looking too good.
+		      </div>
+		     {% endif %}
+			<div class="page-header">
+				<h1>{{ problem.title }}</h1>
+			</div>
+
+			<img src="http://www.deathball.net/notpron/true/screen4.jpg" alt="..." usemap="#treasure" class="img-rounded">
+			<form role="form">
+				<br/>
+			  	<input type="text" class="form-control" placeholder="Username">
+			  	<br/>
+			  <button type="button" class="btn btn-primary btn-lg">Big Submit Button</button>
+			</form>
+		<br/>
+		<hr style="border-color:grey">
+      <a data-toggle="modal" href="#myModal" class="btn btn-primary btn-lg">Big Hints Button</a> &nbsp; &nbsp;
+	        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	          <div class="modal-dialog">
+	            <div class="modal-content">
+	              <div class="modal-header">
+	                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+	                <h2 class="modal-title">Hints for this Question</h2>
+	              </div>
+	              <div class="modal-body">
+	              	{{ problem.hints | safe }}
+	              </div>
+	              <div class="modal-footer">
+	                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+	              </div>
+	             </div><!-- /.modal-content -->
+	          </div><!-- /.modal-dialog -->
+	        </div><!-- /.modal -->
+	</div>
+</div>
+
+</div>
+{{ problem.map_data | safe }}
+
+{% include 'footer.html' %}
+<!-- {{ problem.clues }} -->
+</body>
+</html>
