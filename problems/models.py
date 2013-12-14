@@ -13,3 +13,8 @@ class Problem(models.Model):
 	clues		= 	models.TextField(null=True,blank=True)
 	map_data	= 	models.TextField(null=True,blank=True)
 	type_data 	= 	models.BooleanField(default=True)
+	form_data   = 	models.TextField()
+	other_data  =   models.TextField()
+
+	def __unicode__(self):
+		return self.title +' | '+self.answer

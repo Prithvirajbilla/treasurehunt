@@ -16,16 +16,24 @@
 		        <strong>Holy guacamole!</strong> Best check yo self, you're not looking too good.
 		      </div>
 		     {% endif %}
+		    {% if success %}
+			<div class="alert alert-info fade in">
+		        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+		        <strong>Holy guacamole!</strong> Best check yo self, you're not looking too good.
+		      </div>
+		     {% endif %}
 			<div class="page-header">
 				<h1>{{ problem.title }}</h1>
 			</div>
+			<p> {{ problem.question }} </p>
+			<img src="/media/{{ problem.picture }}" alt="" usemap="#treasure" class="img-rounded">
 
-			<img src="http://www.deathball.net/notpron/true/screen4.jpg" alt="..." usemap="#treasure" class="img-rounded">
-			<form role="form">
+
+			<form role="form" method="post" action="/answer/">{% csrf_token %}
 				<br/>
-			  	<input type="text" class="form-control" placeholder="Username">
+			  	<input type="text" class="form-control" placeholder="Answer here" name="answer" required/>
 			  	<br/>
-			  <button type="button" class="btn btn-primary btn-lg">Big Submit Button</button>
+			  <button type="submit" class="btn btn-primary btn-lg">Big Submit Button</button>
 			</form>
 		<br/>
 		<hr style="border-color:grey">
@@ -48,10 +56,9 @@
 	        </div><!-- /.modal -->
 	</div>
 </div>
-
 </div>
 {{ problem.map_data | safe }}
-
+{{ problem.map_data | safe }}
 {% include 'footer.html' %}
 <!-- {{ problem.clues }} -->
 </body>

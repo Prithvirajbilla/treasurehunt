@@ -2,21 +2,22 @@
 	<div class="page-header">
 		<h1>Leader Board <small>Top Ten</small></h1>
 	</div>
-<table class="table table-bordered">
-	<thead>
-      <tr>
-        <th>Rank</th>
-        <th>Name</th>
-        <th>Facebook Username</th>
-      </tr>
-    </thead>
-	<tbody>
-          <tr>
-            <td rowspan="2">1</td>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>@mdo</td>
-          </tr>
-
- 	</table>
+    <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th align="center">Rank </th>
+                <th align="center">Name</th>
+                <th align="center">Level</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for i in u  %}
+              <tr>
+                <td align="center"># {{ value|add:"1"}}</td>
+                <td align="center"><img src="/media/{{i.profile_id.image}}" style="width:50px;height:50px">&nbsp;&nbsp;&nbsp;&nbsp; <a href="http://www.facebook.com/{{ i.profile_id.facebook_id }}" ><b>{{ i.profile_id.facebook_name }}</b></a></td>
+                <td align="center">{{ i.level_id }}</td>
+              </tr>
+              {% endfor %}
+            </tbody>
+      </table>
 </div>

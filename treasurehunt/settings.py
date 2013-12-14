@@ -25,7 +25,7 @@ DATABASES = {
 
 # Hosts/domain names that are valid for this site; required if DEBUG is False
 # See https://docs.djangoproject.com/en/1.5/ref/settings/#allowed-hosts
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['' ]
 
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
@@ -181,7 +181,7 @@ AUTHENTICATION_BACKENDS = (
 
 FACEBOOK_APP_ID = '210023619181880'
 FACEBOOK_APP_SECRET = '93efd45d291fd1f56bba25139b42a156'
-FACEBOOK_DEFAULT_SCOPE = ['publish_stream','publish_actions','email']
+FACEBOOK_DEFAULT_SCOPE = ['publish_stream','publish_actions','email','user_about_me']
 AUTH_USER_MODEL = 'django_facebook.FacebookCustomUser'
 FACEBOOK_STORE_FRIENDS = True
 # FACEBOOK_CELERY_TOKEN_EXTEND = True

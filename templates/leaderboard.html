@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+{% include "header.html" %}
+
+<body>
+{% include 'nav.html' %}
+<br/>
+<br/>
+<div class="container">
+	<div class="row">
+		<div class="col-lg-12">
+		<table class="table table-bordered">
+		        <thead>
+		          <tr>
+		            <th align="center">Rank </th>
+		            <th align="center">Name</th>
+		            <th align="center">Level</th>
+		          </tr>
+		        </thead>
+		        <tbody>
+		        	{% for i in u  %}
+		        	<tr>
+		        		<td align="center"># {{ value|add:"1"}}</td>
+		        		<td align="center"><img src="/media/{{i.profile_id.image}}" style="width:50px;height:50px">&nbsp;&nbsp;&nbsp;&nbsp; <a href="http://www.facebook.com/{{ i.profile_id.facebook_id }}" ><b>{{ i.profile_id.facebook_name }}</b></a>
+		        		&nbsp;&nbsp;&nbsp;&nbsp;<a class="btn btn-default" href="https://www.facebook.com/dialog/send?app_id=210023619181880&link=http://facebook.com/&redirect_uri=https://localhost:8000/&to={{ i.profile_id.facebook_id  }}&display=popup"> Message </a></td>
+		        		<td align="center">{{ i.level_id }}</td>
+		        	</tr>
+		        	{% endfor %}
+		        </tbody>
+      </table>
+		</div>
+	</div>
+</div>
+
+{% include 'footer.html' %}
+</body>
+</html>

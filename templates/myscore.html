@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+{% include "header.html" %}
+
+<body>
+{% include 'nav.html' %}
+<br/>
+<br/>
+<div class="container">
+	<div class="row">
+		<div class="col-lg-6 col-lg-offset-3">
+			<div class="page-header">
+				<h1> SCORE CARD | STAB IIT Bombay </h1>
+			</div>
+			<img src="/media/{{ user.image }}" alt="{{ user.image }}" class="img-rounded" />
+			<br/>
+			<br/>
+			<h4> Name:  &nbsp;&nbsp;{{ user.facebook_name }}</h4>
+			<h5> Profile: &nbsp;&nbsp;http://www.facebook.com/{{ user.facebook_id }} </h5>
+			<h5> Level: &nbsp;&nbsp;  {{l.level_id }} <small>Currently</small> </h5>
+
+		</div>
+	</div>
+</div>
+	<br/>
+	<br/>
+	<br/><br/>
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+{% include 'footer.html' %}
+</body>
+</html>

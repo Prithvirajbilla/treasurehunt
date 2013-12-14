@@ -2,7 +2,7 @@
 from django.shortcuts import render
 from django.template.loader import get_template
 from django.template import Context
-from django.http import HttpResponse,HttpResponseRedirect
+from django.http import HttpResponse,HttpResponseRedirect,Http404
 from open_facebook.api import OpenFacebook, FacebookAuthorization
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate
@@ -11,21 +11,66 @@ from login.models import *
 from problems.models import *
 
 def index(request):
-	if request.method == 'GET':
-		return render(request,"main.html")
-	elif request.method == 'POST':
-		return render(request,"main.html")
-
-def register_next(request):
-	user = request.user.id
-	# graph = user.get_offline_graph()
-	l = Level.objects.get(user_id=FacebookCustomUser.objects.get(pk=1))
-	level_id = l.level_id
-	problem = Problem.objects.get(pk=level_id+1)
-	return render(request,"questions.html",{"graph":problem.answer})
+	if request.user.is_authenticated():
+		user = request.user
+		return HttpResponseRedirect("/treasure")
+	else:
+		if request.method == 'GET':
+			l=Level.objects.all()[:10]
+			return render(request,"main.html",{'u':l})
+		elif request.method == 'POST':
+			return render(request,"main.html")
 
 def next(request):
-	l = Level(user_id=FacebookCustomUser.objects.get(pk=1),level_id=0)
-	l.save()
-	return HttpResponseRedirect("/treasure")
+	if request.user.is_authenticated and request.user.id != None:
+		print request.user.id
+		l = Level.objects.get(user_id=request.user.id)
+		level_id = l.level_id
+		user = FacebookProfile.objects.get(user=FacebookCustomUser(pk=request.user.id))
+		problem = Problem.objects.get(pk=level_id+1)
+		if 'p' in request.GET:
+			p = request.GET['p']
+			if p=='error':
+				return render(request,"question.html",{"problem":problem,"user":user,'error':True,
+					"logged_in":True})
+			elif p=='success':
+				return render(request,"question.html",{"problem":problem,"user":user,'success':True
+					,"logged_in":True})
+			else:
+				return render(request,"question.html",{"problem":problem,"user":user,"logged_in":True})
+		else:
+			return render(request,"question.html",{"problem":problem,"user":user,"logged_in":True})
+	else:
+		return HttpResponseRedirect("/")
 
+def register_next(request):
+	if request.user.is_authenticated and request.user.id != None:
+		try:
+			l = Level(user_id=FacebookCustomUser.objects.get(pk=request.user.id),level_id=0,
+				profile_id=FacebookProfile.objects.get(user=FacebookCustomUser(pk=request.user.id)))
+			l.save()
+		except Exception, e:
+			raise Http404
+		try:
+			fb = get_persistent_graph(request)
+			message = "I'm an Adventurer, Looking for a treasure. come join me."
+			fb.set('me/feed', message=message)
+		except Exception,e:
+			pass
+
+		return HttpResponseRedirect("/treasure")
+
+
+def myscore(request,uid):
+	try:
+		uid = int(uid)
+		print uid
+		l = Level.objects.get(user_id=FacebookCustomUser(id=uid))
+		print l.user_id
+	except Exception,e:
+		raise Http404
+	if request.user.is_authenticated and request.user.id != None:
+		user = FacebookProfile.objects.get(user=FacebookCustomUser(pk=request.user.id))
+		return render(request,"myscore.html",{"level":l,"logged_in":True,'user':user})
+	else:
+		raise Http404

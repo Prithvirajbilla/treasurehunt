@@ -20,8 +20,15 @@ urlpatterns = patterns('',
     url(r'^admin/', include(admin.site.urls)),
 	url(r'^facebook/', include('django_facebook.urls')),
 	url(r'^accounts/', include('django_facebook.auth_urls')),
-	url(r'^treasure/$',register_next),
-    url(r'^next/$',next),
-    url(r'^view/$',view_prob)
+	url(r'^treasure/$',next),
+    url(r'^next/$',register_next),
+    url(r'^view/$',view_prob),
+    url(r'^answer/$',ans),
+    (r'^media/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.MEDIA_ROOT}),
+    url(r'^leaderboard/$',leaderboard),
+    url(r'^logout/$',logout),
+    url(r'^myscore/(\d+)$',myscore),
+    url(r'^help/$',help),
+    url(r'^rules/$',rules),
  #Don't add this line if you use django registration or userena for registration and auth.
 )+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
