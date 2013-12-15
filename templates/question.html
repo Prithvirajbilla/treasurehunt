@@ -5,7 +5,25 @@
 
 <body>
 {% include 'nav.html' %}
+<script type="text/javascript">
+function getCookie(name) {
+    var cookieValue = null;
+    if (document.cookie && document.cookie != '') {
+        var cookies = document.cookie.split(';');
+        for (var i = 0; i < cookies.length; i++) {
+            var cookie = jQuery.trim(cookies[i]);
+            // Does this cookie string begin with the name we want?
+            if (cookie.substring(0, name.length + 1) == (name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
+        }
+    }
+    return cookieValue;
+}
+var csrftoken = getCookie('csrftoken');
 
+</script>
 <div class="container">
 	<div class="row">
 		<div class="col-lg-8 col-lg-offset-2">
@@ -63,5 +81,6 @@
 {{ problem.other_data | safe}}
 {% include 'footer.html' %}
 <!-- {{ problem.clues }} -->
+
 </body>
 </html>
