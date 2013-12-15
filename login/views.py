@@ -51,10 +51,6 @@ def register_next(request):
 			l.save()
 		except Exception, e:
 			raise Http404
-		fb = request.user.get_offline_graph(request)
-		message = "I'm an Adventurer, Looking for a treasure. come join me."
-		fb.set('me/feed', message=message,url="http://treasurehunt.stab-iitb.org/")
-
 		return HttpResponseRedirect("/treasure")
 
 
@@ -67,9 +63,6 @@ def myscore(request,uid):
 	except Exception,e:
 		raise Http404
 	if request.user.is_authenticated and request.user.id != None:
-		fb = request.user.get_offline_graph(request)
-		message = "I'm an Adventurer, Looking for a treasure. come join me."
-		fb.set('me/feed', message=message,url="http://treasurehunt.stab-iitb.org/")
 		user = FacebookProfile.objects.get(user=FacebookCustomUser(pk=request.user.id))
 		return render(request,"myscore.html",{"level":l,"logged_in":True,'user':user})
 	else:
