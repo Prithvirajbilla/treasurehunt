@@ -44,7 +44,8 @@ var csrftoken = getCookie('csrftoken');
 				<h1>{{ problem.title }}</h1>
 			</div>
 			<p> {{ problem.question }} </p>
-			<img src="/media/{{ problem.picture }}" alt="" usemap="#treasure" class="img-rounded">
+			<img src="/media/{{ problem.picture }}" style="max-width:640px" alt="" usemap="#treasure" class="img-rounded">
+			{{ problem.map_data | safe }}
 			{{ problem.other_data | safe}}
 
 
@@ -76,9 +77,7 @@ var csrftoken = getCookie('csrftoken');
 	</div>
 </div>
 </div>
-{{ problem.map_data | safe }}
 {{ problem.form_data | safe }}
-{{ problem.other_data | safe}}
 {% include 'footer.html' %}
 <!-- {{ problem.clues }} -->
 
