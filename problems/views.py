@@ -16,12 +16,14 @@ def ans(request):
 	if request.method == 'GET':
 		if 'answer' in request.GET:
 			ans = request.GET['answer']
+			#return HttpResponse(ans)
 			if request.user.is_authenticated and request.user.id != None:
 				l = Level.objects.get(user_id=request.user)
 				level_id = l.level_id+1;
 				print level_id
 				problem = Problem.objects.get(pk=level_id)
-				if problem.answer == answer:
+				#return HttpResponse(problem.answer)
+				if problem.answer == ans:
 					l.level_id = l.level_id+1
 					l.save()
 					return HttpResponseRedirect("/treasure/?p=success")
