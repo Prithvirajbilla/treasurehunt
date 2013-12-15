@@ -29,7 +29,7 @@ def ans(request):
 					return HttpResponseRedirect("/treasure/?p=error")
 			else:
 				return HttpResponseRedirect("/")
-		return Http404
+		raise Http404
 	else:
 		if 'answer' in request.POST:
 			answer = request.POST['answer']
@@ -46,7 +46,7 @@ def ans(request):
 					return HttpResponseRedirect("/treasure/?p=error")
 			else:
 				return HttpResponseRedirect("/")
-		return Http404
+		raise Http404
 
 def leaderboard(request):
 	if 'p' in request.GET:
