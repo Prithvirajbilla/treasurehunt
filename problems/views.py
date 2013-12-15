@@ -21,6 +21,7 @@ def ans(request):
 				level_id = l.level_id+1;
 				print level_id
 				problem = Problem.objects.get(pk=level_id)
+				return HttpResponse(problem.answer)
 				if problem.answer == answer:
 					l.level_id = l.level_id+1
 					l.save()
