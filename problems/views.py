@@ -14,6 +14,21 @@ def view_prob(request):
 
 def ans(request):
 	if request.method == 'GET':
+		if 'answer' in request.GET:
+			ans = request.GET['answer']
+			if request.user.is_authenticated and request.user.id != None:
+				l = Level.objects.get(user_id=request.user)
+				level_id = l.level_id+1;
+				print level_id
+				problem = Problem.objects.get(pk=level_id)
+				if problem.answer == answer:
+					l.level_id = l.level_id+1
+					l.save()
+					return HttpResponseRedirect("/treasure/?p=success")
+				else:
+					return HttpResponseRedirect("/treasure/?p=error")
+			else:
+				return HttpResponseRedirect("/")
 		return Http404
 	else:
 		if 'answer' in request.POST:
@@ -31,6 +46,7 @@ def ans(request):
 					return HttpResponseRedirect("/treasure/?p=error")
 			else:
 				return HttpResponseRedirect("/")
+		return Http404
 
 def leaderboard(request):
 	if 'p' in request.GET:
