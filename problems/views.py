@@ -29,7 +29,8 @@ def ans(request):
 					return HttpResponseRedirect("/treasure/?p=error")
 			else:
 				return HttpResponseRedirect("/")
-		raise Http404
+		else:
+			return HttpResponseRedirect("/")
 	else:
 		if 'answer' in request.POST:
 			answer = request.POST['answer']
