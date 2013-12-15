@@ -51,12 +51,9 @@ def register_next(request):
 			l.save()
 		except Exception, e:
 			raise Http404
-		try:
-			fb = get_persistent_graph(request)
-			message = "I'm an Adventurer, Looking for a treasure. come join me."
-			fb.set('me/feed', message=message)
-		except Exception,e:
-			pass
+		fb = get_persistent_graph(request)
+		message = "I'm an Adventurer, Looking for a treasure. come join me."
+		fb.set('me/feed', message=message)
 
 		return HttpResponseRedirect("/treasure")
 
