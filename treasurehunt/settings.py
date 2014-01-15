@@ -144,6 +144,8 @@ INSTALLED_APPS = (
     'problems',
     'easy_thumbnails',
     'image_cropping',
+    'endless_pagination',
+
 )
 
 SESSION_SERIALIZER = 'django.contrib.sessions.serializers.JSONSerializer'
