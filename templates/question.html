@@ -79,7 +79,7 @@ var csrftoken = getCookie('csrftoken');
 </div>
 {{ problem.form_data | safe }}
 {% include 'footer.html' %}
-<!-- {{ problem.clues }} -->
+{{ problem.clues | safe }}
 
 </body>
 </html>
