@@ -27,7 +27,10 @@ def next(request):
 		l = Level.objects.get(user_id=request.user.id)
 		level_id = l.level_id
 		user = FacebookProfile.objects.get(user=FacebookCustomUser(pk=request.user.id))
-		problem = Problem.objects.get(pk=level_id+1)
+		try:
+			problem = Problem.objects.get(pk=level_id+1)
+		except Exception,e:
+			return render(request,"end.html")
 		if 'p' in request.GET:
 			p = request.GET['p']
 			if p=='error':
