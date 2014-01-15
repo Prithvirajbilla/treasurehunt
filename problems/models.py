@@ -3,6 +3,7 @@ from django.db import models
 # Create your models here.
 def content_file_name(instance, filename):
     return '/'.join(['content', filename])
+from image_cropping import ImageRatioField
 
 class Problem(models.Model):
 	title 		=	models.CharField(max_length=15,null=True,blank=True)
@@ -15,6 +16,7 @@ class Problem(models.Model):
 	type_data 	= 	models.BooleanField(default=True)
 	form_data   = 	models.TextField()
 	other_data  =   models.TextField()
+	cropping = ImageRatioField('picture', '640x480',size_warning=True)
 
 	def __unicode__(self):
 		return self.title +' | '+self.answer

@@ -19,6 +19,9 @@
 		          </tr>
 		        </thead>
 		        <tbody>
+			          {% load endless %}
+			        {% if u %}
+					{% paginate u %}
 		        	{% for i in u  %}
 		        	<tr>
 		        		<td align="center"># {{ value|add:"1"}}</td>
@@ -27,6 +30,8 @@
 		        		<td align="center">{{ i.level_id }}</td>
 		        	</tr>
 		        	{% endfor %}
+		        	{% show_pages %}
+		        	{% endif %}
 		        </tbody>
       </table>
 		</div>

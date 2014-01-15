@@ -16,7 +16,7 @@ def index(request):
 		return HttpResponseRedirect("/treasure")
 	else:
 		if request.method == 'GET':
-			l=Level.objects.all()[:10]
+			l=Level.objects.all().order_by('-level_id')[:10]
 			return render(request,"main.html",{'u':l})
 		elif request.method == 'POST':
 			return render(request,"main.html")

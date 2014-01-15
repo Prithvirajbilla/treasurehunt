@@ -66,6 +66,9 @@ def leaderboard(request):
 	else:
 		return render(request,"leaderboard.html",{'u':l,'value':0})
 
+
+
+
 from django.contrib.auth import logout as django_logout
 
 def logout(request):

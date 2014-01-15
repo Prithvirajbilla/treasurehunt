@@ -142,6 +142,8 @@ INSTALLED_APPS = (
     'login',
     'django_facebook',
     'problems',
+    'easy_thumbnails',
+    'image_cropping',
 )
 
 SESSION_SERIALIZER = 'django.contrib.sessions.serializers.JSONSerializer'

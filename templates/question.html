@@ -44,10 +44,10 @@ var csrftoken = getCookie('csrftoken');
 				<h1>{{ problem.title }}</h1>
 			</div>
 			<p> {{ problem.question }} </p>
-			<img src="/media/{{ problem.picture }}" style="max-width:640px" alt="" usemap="#treasure" class="img-rounded">
+              {% load cropping %}
+              <img src="{% cropped_thumbnail problem "cropping"  %}" usemap="#treasure" class="img-rounded">
 			{{ problem.map_data | safe }}
 			{{ problem.other_data | safe}}
-
 
 			<form role="form" method="post" action="/answer/">{% csrf_token %}
 				<br/>
