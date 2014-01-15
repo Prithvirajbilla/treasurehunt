@@ -10,7 +10,7 @@
         </div>
         <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav navbar-right">
-            {% if request.user.id != None%}
+            {% if not request.user.id %}
                 <li>
                     <a href="/"><i class="glyphicon glyphicon-user"></i> Participate</a>
                 </li>
