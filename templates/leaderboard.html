@@ -24,7 +24,7 @@
 					{% paginate u %}
 		        	{% for i in u  %}
 		        	<tr>
-		        		<td align="center"># {{ value|add:"1"}}</td>
+		        		<td align="center"># {{ forloop.couter }}</td>
 		        		<td align="center"><img src="/media/{{i.profile_id.image}}" style="width:50px;height:50px">&nbsp;&nbsp;&nbsp;&nbsp; <a href="http://www.facebook.com/{{ i.profile_id.facebook_id }}" ><b>{{ i.profile_id.facebook_name }}</b></a>
 		        		&nbsp;&nbsp;&nbsp;&nbsp;<a class="btn btn-default" href="https://www.facebook.com/dialog/send?app_id=210023619181880&link=http://treasurehunt.stab-iitb.org/treasure/&redirect_uri=http://treasurehunt.stab-iitb.org/&to={{ i.profile_id.facebook_id  }}&display=popup"> Message </a></td>
 		        		<td align="center">{{ i.level_id }}</td>
