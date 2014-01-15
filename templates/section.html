@@ -3,14 +3,10 @@
 <div class="container">
     <h1>Tresure Hunt | Stab IITB</h1>
     <p>
-    There are several advantages of storing your open graph shares in the database. You get:
-    Stats
-    Error tracking
-    Ability to retry individual shares
-    Ability to retry a user’s shares if you get an updated token
-    Ability to delete shares (since you store the Facebook object id)    
-Especially the ability to retry shares was important to us. Django Facebook provides a convenient OpenGraphShare model to store all your shares in. Have a look at the example below:    </p>
-    <p>
+
+    In the Treasure Hunt . . . intellectual men were paired off with great beauties, glamor with talent. In the course of the night's escapades anything could happen.
+     Ahoy! Let's get started. To Begin, Login with Facebook.
+        <p>
     {% include 'django_facebook/_facebook_js.html' %}
 <form action="{% url 'facebook_connect' %}?facebook_login=1" method="post">
     <input type="hidden" value="/treasure" name="next" />
