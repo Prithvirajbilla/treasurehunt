@@ -19,9 +19,7 @@
 		          </tr>
 		        </thead>
 		        <tbody>
-			          {% load endless %}
 			        {% if u %}
-					{% paginate u %}
 		        	{% for i in u  %}
 		        	<tr>
 		        		<td align="center"># {{ forloop.counter }}</td>
@@ -30,7 +28,6 @@
 		        		<td align="center">{{ i.level_id }}</td>
 		        	</tr>
 		        	{% endfor %}
-		        	{% show_pages %}
 		        	{% endif %}
 		        </tbody>
       </table>
