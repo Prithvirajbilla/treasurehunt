@@ -16,7 +16,7 @@ class Problem(models.Model):
 	type_data 	= 	models.BooleanField(default=True)
 	form_data   = 	models.TextField()
 	other_data  =   models.TextField()
-	cropping = ImageRatioField('picture', '640x480',size_warning=True)
+	cropping = ImageRatioField('picture', '640x480')
 
 	def __unicode__(self):
 		return self.title +' | '+self.answer
