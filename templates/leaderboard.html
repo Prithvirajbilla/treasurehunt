@@ -25,7 +25,7 @@
 		        	<tr>
 		        		<td align="center">{{ forloop.counter }}</td>
 		        		<td align="center"><img src="/media/{{i.profile_id.image}}" style="width:50px;height:50px">&nbsp;&nbsp;&nbsp;&nbsp; <a href="http://www.facebook.com/{{ i.profile_id.facebook_id }}" ><b>{{ i.profile_id.facebook_name }}</b></a>
-		        		&nbsp;&nbsp;&nbsp;&nbsp;<a class="btn btn-default" href="https://www.facebook.com/dialog/send?app_id=210023619181880&link=http://treasurehunt.stab-iitb.org/treasure/&redirect_uri=http://treasurehunt.stab-iitb.org/&to={{ i.profile_id.facebook_id  }}&display=popup"> Message </a></td>
+		        		&nbsp;&nbsp;&nbsp;&nbsp;<a class="btn btn-default" href="https://www.facebook.com/dialog/send?app_id=210023619181880&link=http://techid.stab-iitb.org/&redirect_uri=http://treasurehunt.stab-iitb.org/&to={{ i.profile_id.facebook_id  }}&display=popup"> Message </a></td>
 		        		<td align="center">{{ i.level_id }}</td>
 		        	</tr>
 		        	{% endfor %}
