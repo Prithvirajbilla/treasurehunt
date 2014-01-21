@@ -46,7 +46,8 @@ var csrftoken = getCookie('csrftoken');
 			</div>
 			<p> {{ problem.question }} </p>
               {% load cropping %}
-              {% if problem.picture != None %}
+              
+              {% if true %}
               <img src="{% cropped_thumbnail problem "cropping"  %}" usemap="#treasure" class="img-rounded">
               {% endif %}
 			{{ problem.map_data | safe }}
