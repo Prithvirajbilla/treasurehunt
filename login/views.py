@@ -24,7 +24,12 @@ def index(request):
 def next(request):
 	if request.user.is_authenticated and request.user.id != None:
 		print request.user.id
-		l = Level.objects.get(user_id=request.user.id)
+		try:
+			l = Level.objects.get(user_id=request.user.id)
+		except Exception,e:
+			l = Level(user_id=FacebookCustomUser.objects.get(pk=request.user.id),level_id=0,
+			profile_id=FacebookProfile.objects.get(user=FacebookCustomUser(pk=request.user.id)))
+			l.save()
 		level_id = l.level_id
 		user = FacebookProfile.objects.get(user=FacebookCustomUser(pk=request.user.id))
 		try:
