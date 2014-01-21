@@ -9,9 +9,15 @@ class Level(models.Model):
 	profile_id  = 	models.OneToOneField(FacebookProfile)
 	
 	def __unicode__(self):
-		return self.user_id.first_name + "|" + self.level_id
+		return self.user_id + "|" + self.level_id
 
 class Help(models.Model):
 	help = models.TextField()
+	
+	def __unicode__(self):
+		return self.help
 class Rules(models.Model):
 	rule = models.TextField()
+	
+	def __unicode__(self):
+		return self.rule
