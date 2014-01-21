@@ -42,7 +42,7 @@ var csrftoken = getCookie('csrftoken');
 		      </div>
 		     {% endif %}
 			<div class="page-header">
-				<h1>{{ problem.title }}</h1>
+				<h1>{{ problem.title }}<small>Level {{problem.id}}</small></h1>
 			</div>
 			<p> {{ problem.question | safe }} </p>
               {% load cropping %}
