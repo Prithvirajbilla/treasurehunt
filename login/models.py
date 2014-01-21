@@ -9,7 +9,7 @@ class Level(models.Model):
 	profile_id  = 	models.OneToOneField(FacebookProfile)
 	
 	def __unicode__(self):
-		return self.user_id + "|" + self.level_id
+		return str(self.user_id) + "|" + str(self.level_id)
 
 class Help(models.Model):
 	help = models.TextField()
