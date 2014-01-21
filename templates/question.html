@@ -62,7 +62,7 @@ var csrftoken = getCookie('csrftoken');
 			</form>
 			{% endif %}
 		<br/>
-		<hr style="border-color:grey">
+		{{ problem.hints | safe }}
 	</div>
 </div>
 </div>
