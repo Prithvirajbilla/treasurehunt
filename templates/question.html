@@ -52,7 +52,7 @@ var csrftoken = getCookie('csrftoken');
 			{{ problem.map_data | safe }}
 			{{ problem.other_data | safe}}
 			
-			{% if not problem.type_data %}
+			{% if  problem.type_data %}
 
 			<form role="form" method="post" action="/answer/">{% csrf_token %}
 				<br/>
