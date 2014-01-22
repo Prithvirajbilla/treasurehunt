@@ -35,6 +35,7 @@ def ans(request):
 	else:
 		if 'answer' in request.POST:
 			answer = request.POST['answer']
+			answer = answer.lower()
 			if request.user.is_authenticated and request.user.id != None:
 				l = Level.objects.get(user_id=request.user)
 				level_id = l.level_id+1;
